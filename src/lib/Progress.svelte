@@ -56,7 +56,7 @@
 
   .progress h1 {
     font-family: "Rubik Bubbles", sans-serif;
-    font-size: minmax(2em, 5vw);
+    font-size: 5rem;
     font-weight: 400;
     text-align: center;
     margin: 0;

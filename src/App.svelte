@@ -1,7 +1,4 @@
 <script lang="ts">
-  import svelteLogo from "./assets/svelte.svg";
-  import viteLogo from "/vite.svg";
-  import Counter from "./lib/Counter.svelte";
   import Progress from "./lib/Progress.svelte";
 </script>
 
@@ -19,5 +16,9 @@
     color: #229e9e;
     font-family: "Rubik", sans-serif;
     font-weight: 500;
+
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
   }
 </style>
