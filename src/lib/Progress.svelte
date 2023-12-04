@@ -16,6 +16,8 @@
 
   const remaining = writable("");
 
+  const percentage = writable("");
+
   const tick = () => {
     const now = Date.now();
     const days = differenceInBusinessDays(now, start);
@@ -37,6 +39,13 @@
     remaining.set(
       `${hoursLeft} hours, ${minutesLeft} minutes, ${secondsLeft} seconds`
     );
+
+    percentage.set(
+      `${(
+        ((hours * 3600000 + milliseconds) * 100.0) /
+        totalMilliseconds
+      ).toFixed(3)}%`
+    );
   };
 
   setInterval(tick, 100);
@@ -46,6 +55,7 @@
   <h1>Are we done yet?</h1>
   <progress value={$elapsed} max={totalMilliseconds} />
   <p>{$remaining} until freedom</p>
+  <b>{$percentage}</b>
 </div>
 
 <style type="text/css">
@@ -67,6 +77,13 @@
     margin: 0;
     text-align: center;
     font-size: 1.5rem;
+  }
+
+  .progress b {
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    font-size: 2rem;
   }
 
   progress {
