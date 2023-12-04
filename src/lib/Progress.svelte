@@ -20,13 +20,21 @@
 
   const tick = () => {
     const now = Date.now();
-    const days = differenceInBusinessDays(now, start);
-    const thisMorning = new Date(now).setHours(9);
-    const hours = differenceInHours(now, thisMorning) + days * 8;
-    const milliseconds = differenceInMilliseconds(
-      now,
-      new Date(now).setMinutes(0, 0, 0)
-    );
+    const tonight = new Date(now).setHours(17, 0, 0, 0);
+    const clipped = now < tonight ? now : tonight;
+    const days = differenceInBusinessDays(clipped, start);
+    const thisMorning = new Date(clipped).setHours(9);
+    const hours =
+      clipped < thisMorning
+        ? 0
+        : differenceInHours(clipped, thisMorning) + days * 8;
+    const milliseconds =
+      clipped < thisMorning
+        ? 0
+        : differenceInMilliseconds(
+            clipped,
+            new Date(clipped).setMinutes(0, 0, 0)
+          );
     elapsed.set(Math.min(hours * 3600000 + milliseconds, totalMilliseconds));
 
     const left = Math.max(
